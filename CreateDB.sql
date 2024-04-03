@@ -1,8 +1,8 @@
 -- Create the Hospital database
-CREATE DATABASE Hospital;
+CREATE DATABASE test_db_Hospital;
 
 -- Use the Hospital database
-USE Hospital;
+USE test_db_Hospital;
 
 -- Create the Users table
 CREATE TABLE Users (
