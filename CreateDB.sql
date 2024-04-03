@@ -57,9 +57,29 @@ CREATE TABLE Prescriptions (
 
 -- Create the Billing table
 CREATE TABLE Billing (
-    billing_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT,
-    amount DECIMAL(10, 2),
-    billing_date DATE,
-    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
+    bill_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    FOREIGN KEY (appointment_id) REFERENCES Appointments(appointment_id),
+    total_amt INT,
+    billing_date DATE
+);
+
+--Create the Pharmacy table
+CREATE TABLE Pharmacy (
+    medicine_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    quantity_available INT NOT NULL,
+    unit_price INT NOT NULL,
+    description TEXT,
+    similar_med VARCHAR(255)
+);
+
+--Create Prescription list ( medicines prescribed at each appointment)
+CREATE TABLE Appointment_Medicine (
+    appointment_id INT,
+    medicine_id INT,
+    quantity INT,
+    FOREIGN KEY (appointment_id) REFERENCES Appointments(appointment_id),
+    FOREIGN KEY (medicine_id) REFERENCES Pharmacy(medicine_id),
+    PRIMARY KEY (appointment_id, medicine_id)
 );

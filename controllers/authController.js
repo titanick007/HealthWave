@@ -11,14 +11,13 @@ const login= async(req, res)=>{
     const sql_query = 'SELECT * FROM users WHERE username = ?';
     connection.query(sql_query, [username], (error, results) => {
         if (error) {
-            console.error('Error verifying credentials:', error);
-            return res.status(500).send('An error occurred while verifying credentials');
+            console.error('Error verifying username:', error);
+            return res.status(500).send('An error occurred while verifying username');
         }
   
         if (results.length === 0) {
             return res.status(401).send('Invalid username or password');
         }
-  
         const user = results[0];
         const hashedPasswordFromDB = user.password;
   
@@ -35,6 +34,7 @@ const login= async(req, res)=>{
 
             // Store user_id in session
             req.session.user_id = user.user_id;
+            console.log(req.session.user_id);
   
             // Redirect based on the user's role
             switch (user.role) {

@@ -5,6 +5,7 @@ const adminRoute = require('./admin');
 const patientRoute = require('./patient');
 const doctorRoute = require('./doctor');
 const employeeRoute = require('./employee');
+const fetchDoctorsFromDatabase = require('../controllers/fetchDoctors');
 const router=express.Router();
 const publicDirectoryPath = path.join(__dirname, '..', 'public');
 
@@ -51,6 +52,21 @@ router.get('/doctor-dashboard',(req,res)=>{
 
 //login functionality
 router.use('/auth',authRoute.router);
+
+//returning available doctors for appointments
+router.get('/schedule-appointment', async (req, res) => {
+  try {
+      // Fetch doctors from the database
+      const doctors = await fetchDoctorsFromDatabase(); // Implement this function to fetch doctors
+
+      // Render the appointment form and pass the list of doctors
+      res.render('makeAppointment', { doctors });
+  } catch (error) {
+      // Handle errors
+      console.error('Error fetching doctors:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
 
 
 
