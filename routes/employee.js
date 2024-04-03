@@ -1,6 +1,10 @@
-import express from 'express';
-import connection from '../App.js';
+const express = require('express');
+const handleEmployeeReg = require('../controllers/newEmployee');
+
 const router = express.Router();
 
 
-export default router;
+//registering new employee
+router.post('/register',handleEmployeeReg.employee_register);
+
+module.exports = {router};

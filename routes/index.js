@@ -4,6 +4,7 @@ const authRoute = require('./auth');
 const adminRoute = require('./admin');
 const patientRoute = require('./patient');
 const doctorRoute = require('./doctor');
+const employeeRoute = require('./employee');
 const router=express.Router();
 const publicDirectoryPath = path.join(__dirname, '..', 'public');
 
@@ -61,6 +62,9 @@ router.use('/patient',patientRoute.router);
 
 //Doctor route handling
 router.use('/doctor',doctorRoute.router);
+
+//Employee route handling
+router.use('/employee',employeeRoute.router);
 
 
 
