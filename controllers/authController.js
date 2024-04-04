@@ -34,7 +34,6 @@ const login= async(req, res)=>{
 
             // Store user_id in session
             req.session.user_id = user.user_id;
-            console.log(req.session.user_id);
   
             // Redirect based on the user's role
             switch (user.role) {

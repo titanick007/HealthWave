@@ -5,7 +5,7 @@ const adminRoute = require('./admin');
 const patientRoute = require('./patient');
 const doctorRoute = require('./doctor');
 const employeeRoute = require('./employee');
-const fetchDoctorsFromDatabase = require('../controllers/fetchDoctors');
+const fetchDoctorsDetails = require('../controllers/fetchDoctorsDetails');
 const router=express.Router();
 const publicDirectoryPath = path.join(__dirname, '..', 'public');
 
@@ -57,7 +57,7 @@ router.use('/auth',authRoute.router);
 router.get('/schedule-appointment', async (req, res) => {
   try {
       // Fetch doctors from the database
-      const doctors = await fetchDoctorsFromDatabase(); // Implement this function to fetch doctors
+      const doctors = await fetchDoctorsDetails.fetchDoctorsFromDatabase(); // Implement this function to fetch doctors
 
       // Render the appointment form and pass the list of doctors
       res.render('makeAppointment', { doctors });
