@@ -4,7 +4,7 @@ const authRoute = require('./auth');
 const adminRoute = require('./admin');
 const patientRoute = require('./patient');
 const doctorRoute = require('./doctor');
-const employeeRoute = require('./employee');
+
 const fetchDoctorsDetails = require('../controllers/fetchDoctorsDetails');
 const router=express.Router();
 const publicDirectoryPath = path.join(__dirname, '..', 'public');
@@ -48,7 +48,15 @@ router.get('/patient-dashboard',(req,res)=>{
 router.get('/doctor-dashboard',(req,res)=>{
   res.sendFile(publicDirectoryPath+'/doctor-dashboard.html');
 })
+//Admin
+router.get('/admin-dashboard',(req,res)=>{
+  res.sendFile(publicDirectoryPath+'/admin-dashboard.html')
+})
 
+//directing to pharmacy management page
+router.get('/admin/manage-pharmacy',(req,res)=>{
+  res.sendFile(publicDirectoryPath+'/pharmacy-management-page.html');
+})
 
 //login functionality
 router.use('/auth',authRoute.router);
@@ -79,8 +87,7 @@ router.use('/patient',patientRoute.router);
 //Doctor route handling
 router.use('/doctor',doctorRoute.router);
 
-//Employee route handling
-router.use('/employee',employeeRoute.router);
+
 
 
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
+    <title>Pharmacy Management</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,10 +12,9 @@
             padding: 0;
             display: flex;
             justify-content: center;
-
             height: 100vh;
         }
-        .dashboard {
+        .management {
             margin-top: 100px;
             text-align: center;
         }
@@ -41,11 +40,12 @@
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <h1>Welcome Doctor</h1>
-        <a href="/doctor/view-appointments" class="button">View Appointments</a>
-        <a href="/view-medical-history" class="button">View Medical History</a>
-        <!-- Add more buttons as needed -->
+    <div class="management">
+        <h1>Pharmacy Management</h1>
+        <a href="/admin/restock" class="button">Restock medicines</a>
+        <a href="/admin/place-order" class="button">Place Order</a>
+        <a href="/admin/change-price" class="button">Change Price</a>
+        <a href="/admin/search-medicine" class="button">See available medicines</a>
     </div>
 </body>
 </html>

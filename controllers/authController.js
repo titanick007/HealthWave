@@ -43,9 +43,6 @@ const login= async(req, res)=>{
                 case 'doctor':
                     res.redirect('/doctor-dashboard');
                     break;
-                case 'employee':
-                    res.redirect('/employee-dashboard');
-                    break;
                 case 'administrator':
                     res.redirect('/admin-dashboard');
                     break;

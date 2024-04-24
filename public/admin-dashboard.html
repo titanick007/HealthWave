@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
+    <title>Admin Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +12,6 @@
             padding: 0;
             display: flex;
             justify-content: center;
-
             height: 100vh;
         }
         .dashboard {
@@ -22,6 +21,10 @@
         h1 {
             font-size: 36px;
             margin-bottom: 20px;
+            color: #333;
+        }
+        .button-container {
+            margin-top: 20px;
         }
         .button {
             display: inline-block;
@@ -42,10 +45,12 @@
 </head>
 <body>
     <div class="dashboard">
-        <h1>Welcome Doctor</h1>
-        <a href="/doctor/view-appointments" class="button">View Appointments</a>
-        <a href="/view-medical-history" class="button">View Medical History</a>
-        <!-- Add more buttons as needed -->
+        <h1>Welcome Administrator</h1>
+        <div class="button-container">
+            <a href="/admin/manage-pharmacy" class="button">Manage Pharmacy</a>
+            <a href="/admin/generate-bill" class="button">Generate Bill</a>
+            <a href="/admin/view-medical-history" class="button">View Medical History</a>
+        </div>
     </div>
 </body>
 </html>
