@@ -15,8 +15,19 @@ function fetchAvailableMedicines(callback) {
     });
 }
 
+function fetchRestockMedicines(callback) {
+    // Query to fetch out of stock medicines from the Pharmacy table
+    const query = 'SELECT * FROM Pharmacy WHERE quantity_available = 0';
 
+    // Execute the query
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Error fetching restock medicines:', error);
+            callback(error, null);
+        } else {
+            callback(null, results);
+        }
+    });
+}
 
-
-
-module.exports = {fetchAvailableMedicines};
+module.exports = { fetchAvailableMedicines, fetchRestockMedicines };

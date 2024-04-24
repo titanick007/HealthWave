@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Order</title>
+    <title>Restock Medicines</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
         }
         .container {
-            background-color: #fff;
+            max-width: 800px;
+            margin: 50px auto;
             padding: 20px;
-            border-radius: 10px;
+            background-color: #fff;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center; /* Center align content */
         }
         h1 {
-            margin-top: 0; /* Remove default margin */
-        }
-        form {
-            margin-top: 20px; /* Add some space between heading and form */
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
         }
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 10px;
-            text-align: left; /* Align labels to the left */
         }
         select, input[type="number"] {
-            width: calc(100% - 22px);
+            width: 100%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -58,24 +52,32 @@
         button:hover {
             background-color: #0056b3;
         }
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Place Order</h1>
-        <form action="/admin/submit-order" method="POST">
-            <label for="medicine">Select Medicine:</label>
-            <select id="medicine" name="medicine">
-                <% availableMeds.forEach(med => { %>
-                    <option value="<%= med.name %>"><%= med.name %></option>
-                <% }); %>
-            </select>
-            <br>
-            <label for="quantity">Enter Quantity (Limit: 300):</label>
-            <input type="number" id="quantity" name="quantity" min="1" max="300">
-            <br>
-            <button type="submit">Place Order</button>
-        </form>
+        <h1>Restock Medicines</h1>
+        <% if (outOfStockMeds.length > 0) { %>
+            <form action="/admin/restock" method="POST">
+                <label for="medicine">Select Medicine:</label>
+                <select id="medicine" name="medicine">
+                    <% outOfStockMeds.forEach(med => { %>
+                        <option value="<%= med.name %>"><%= med.name %></option>
+                    <% }); %>
+                </select>
+                <label for="quantity">Enter Quantity to Order:</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="300">
+                <button type="submit">Restock</button>
+            </form>
+        <% } else { %>
+            <p>No medicines are currently out of stock.</p>
+        <% } %>
     </div>
 </body>
 </html>
