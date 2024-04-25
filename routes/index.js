@@ -53,6 +53,13 @@ router.get('/admin-dashboard',(req,res)=>{
   res.sendFile(publicDirectoryPath+'/admin-dashboard.html')
 })
 
+
+
+
+//add new medicine page
+
+
+
 //directing to pharmacy management page
 router.get('/admin/manage-pharmacy',(req,res)=>{
   res.sendFile(publicDirectoryPath+'/pharmacy-management-page.html');

@@ -2,6 +2,10 @@ const express= require('express');
 const handleAdminReg = require('../controllers/newAdmin.js');
 const seemeds = require('../controllers/fetchMeds.js');
 const place_order = require('../controllers/placeOrder.js');
+const path = require('path');
+const addMeds = require('../controllers/addNewMeds.js')
+
+const publicDirectoryPath = path.join(__dirname, '..', 'public');
 
 const router= express.Router();
 
@@ -63,6 +67,16 @@ router.get('/restock-page', (req, res) => {
 
 //place order fro restock
 router.post('/restock',place_order.placeOrder);
+
+
+
+//page to add new medicine
+router.get('/add-medicine-page',(req,res)=>{
+    res.sendFile(publicDirectoryPath+'/add-new-medicine-page.html');
+})
+
+//route to add new mediciine
+router.post('/add-medicine',addMeds.addNewMeds);
 
 
 

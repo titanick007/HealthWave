@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center; /* Center vertically */
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .sidebar {
+            width: 30%; 
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details span {
+            font-weight: bold;
+        }
+        form {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: calc(100% - 10px);
+            height: 100px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Appointment Details</h1>
+            <div class="details">
+                <p><span>Patient Name:</span> <%= patientName %></p>
+                <p><span>Date:</span> <%= appointment.appointment_date %></p>
+                <p><span>Time:</span> <%= appointment.appointment_time %></p>
+                <p><span>Symptoms:</span> <%= appointment.symptoms %></p>
+                <!-- Add more details if needed -->
+            </div>
+        </div>
+        <div class="content">
+            <!-- Add main content here -->
+        </div>
+        <div class="sidebar">
+            <form action="/doctor/prescribe-medicine" method="POST">
+                <h2>Prescribe Medicine</h2>
+                <label for="maxMeds">Max Number of Medicines:</label>
+                <input type="number" id="maxMeds" name="maxMeds" min="0" required>
+                <!-- Medicine 1 -->
+                <label for="med1">Medicine 1:</label>
+                <input type="text" id="med1" name="med1" required>
+                <input type="number" id="med1Quantity" name="med1Quantity" min="0" required>
+                <!-- Medicine 2 -->
+                <label for="med2">Medicine 2:</label>
+                <input type="text" id="med2" name="med2" required>
+                <input type="number" id="med2Quantity" name="med2Quantity" min="0" required>
+                <!-- Medicine 3 -->
+                <label for="med3">Medicine 3:</label>
+                <input type="text" id="med3" name="med3" required>
+                <input type="number" id="med3Quantity" name="med3Quantity" min="0" required>
+                <!-- Diagnosis -->
+                <label for="diagnosis">Diagnosis and Instructions:</label>
+                <textarea id="diagnosis" name="diagnosis" required></textarea>
+                <button type="submit">Prescribe Medicine</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

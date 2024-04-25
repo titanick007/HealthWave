@@ -1,51 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Doctor Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        background-image: url('./image.png');
+        background-size: cover;
+        background-position: center;
 
-            height: 100vh;
-        }
-        .dashboard {
-            margin-top: 100px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
+        height: 100vh;
+      }
+      .dashboard {
+        margin-top: 100px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #007bff;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .button:hover {
+        background-color: #0056b3;
+      }
+      .icon {
+        font-size: 24px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      .logout {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: #007bff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .logout:hover {
+        color: #0056b3;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="dashboard">
-        <h1>Welcome Doctor</h1>
-        <a href="/doctor/view-appointments" class="button">View Appointments</a>
-        <a href="/view-medical-history" class="button">View Medical History</a>
-        <!-- Add more buttons as needed -->
+      <h1>Welcome Doctor</h1>
+      <a href="/doctor/view-appointments" class="button">
+        <i class="ri-time-line icon"></i>View Appointments
+      </a>
+      <a href="/view-medical-history" class="button">
+        <i class="ri-file-history-line icon"></i>View Medical History
+      </a>
+      <a href="/doctor/prescribe-medicine-page" class="button">
+        <i class="ri-prescription-line icon"></i>Prescribe Medicine
+      </a>
+      <a href="/view-lab-results" class="button">
+        <i class="ri-test-tube-line icon"></i>View Lab Results
+      </a>
+      <a href="/doctor-portal" class="button secondary">
+        <i class="ri-dashboard-line icon"></i>Doctor Portal
+      </a>
+      <div class="logout">
+        <i class="ri-logout-box-line"></i>
+      </div>
     </div>
-</body>
+  </body>
 </html>
