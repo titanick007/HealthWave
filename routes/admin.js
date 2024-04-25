@@ -2,6 +2,7 @@ const express= require('express');
 const handleAdminReg = require('../controllers/newAdmin.js');
 const seemeds = require('../controllers/fetchMeds.js');
 const place_order = require('../controllers/placeOrder.js');
+const generateBill = require('../controllers/generatebill.js');
 const path = require('path');
 const addMeds = require('../controllers/addNewMeds.js')
 
@@ -79,6 +80,14 @@ router.get('/add-medicine-page',(req,res)=>{
 router.post('/add-medicine',addMeds.addNewMeds);
 
 
+//generate bill
 
+//select appointment
+router.get('/generate-bill',(req,res)=>{
+    res.sendFile(publicDirectoryPath+'/select-appointment-bill.html');
+})
+
+// route to actually generate bill
+router.post('/generate-bill-display',generateBill.generateBill);
 
 module.exports={router};

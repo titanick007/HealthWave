@@ -46,14 +46,8 @@
             display: block;
             margin-bottom: 10px;
         }
-        input[type="number"] {
-            width: 100px;
-            margin-bottom: 10px;
-        }
-        input[type="text"],
-        input[type="number"],
-        textarea {
-            display: inline-block;
+        select, input[type="number"], textarea {
+            display: block;
             margin-bottom: 10px;
         }
         textarea {
@@ -94,21 +88,19 @@
         </div>
         <div class="sidebar">
             <form action="/doctor/prescribe-medicine" method="POST">
+                <input type="hidden" name="appointmentId" value="<%= appointment.appointment_id %>">
                 <h2>Prescribe Medicine</h2>
-                <label for="maxMeds">Max Number of Medicines:</label>
-                <input type="number" id="maxMeds" name="maxMeds" min="0" required>
-                <!-- Medicine 1 -->
-                <label for="med1">Medicine 1:</label>
-                <input type="text" id="med1" name="med1" required>
-                <input type="number" id="med1Quantity" name="med1Quantity" min="0" required>
-                <!-- Medicine 2 -->
-                <label for="med2">Medicine 2:</label>
-                <input type="text" id="med2" name="med2" required>
-                <input type="number" id="med2Quantity" name="med2Quantity" min="0" required>
-                <!-- Medicine 3 -->
-                <label for="med3">Medicine 3:</label>
-                <input type="text" id="med3" name="med3" required>
-                <input type="number" id="med3Quantity" name="med3Quantity" min="0" required>
+                <% for (let i = 1; i <= 3; i++) { %>
+                    <!-- Medicine <%= i %> -->
+                    <label for="med<%= i %>">Medicine <%= i %>:</label>
+                    <select id="med<%= i %>" name="med<%= i %>" onchange="updateQuantityRequired(i)">
+                        <option value="" selected disabled>Select Medicine</option>
+                        <% medicines.forEach(medicine => { %>
+                            <option value="<%= medicine.medicine_id %>"><%= medicine.name %></option>
+                        <% }) %>
+                    </select>
+                    <input type="number" id="med<%= i %>Quantity" name="med<%= i %>Quantity" min="0">
+                <% } %>
                 <!-- Diagnosis -->
                 <label for="diagnosis">Diagnosis and Instructions:</label>
                 <textarea id="diagnosis" name="diagnosis" required></textarea>
@@ -116,5 +108,17 @@
             </form>
         </div>
     </div>
+    <script>
+        function updateQuantityRequired(index) {
+            const medicineSelect = document.getElementById(`med${index}`);
+            const quantityInput = document.getElementById(`med${index}Quantity`);
+
+            if (medicineSelect.value !== '') {
+                quantityInput.setAttribute('required', 'required');
+            } else {
+                quantityInput.removeAttribute('required');
+            }
+        }
+    </script>
 </body>
 </html>

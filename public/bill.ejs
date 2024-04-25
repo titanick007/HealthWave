@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .bill-details {
+            margin-bottom: 20px;
+        }
+        .bill-details p {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bill</h1>
+        <div class="bill-details">
+            <p><span>Patient Name:</span> <%= patientName %></p>
+            <p><span>Appointment Date:</span> <%= appointment.appointment_date %></p>
+            <p><span>Appointment Time:</span> <%= appointment.appointment_time %></p>
+            <p><span>Doctor Name:</span> <%= appointment.doctor_name %></p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% medicineResults.forEach(medicine => { %>
+                    <tr>
+                        <td><%= medicine.medicine_name %></td>
+                        <td><%= medicine.quantity %></td>
+                        <td><%= medicine.unit_price %></td>
+                    </tr>
+                <% }); %>
+                <tr class="total">
+                    <td colspan="2">Consultancy Charge</td>
+                    <td>400</td>
+                </tr>
+                <tr class="total">
+                    <td colspan="2">Total Price</td>
+                    <td><%= totalPrice %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -2,7 +2,7 @@ const connection = require('../database');
 
 const selectAppointment = (req, res) => {
     const { patientName, appointmentDate, appointmentTime } = req.query;
-
+    
     // Query to fetch the patient_id based on the patient name
     const findPatientQuery = 'SELECT patient_id FROM Patients WHERE name = ?';
 
@@ -21,22 +21,36 @@ const selectAppointment = (req, res) => {
         const patientId = patientResults[0].patient_id;
 
         // Query to fetch details of the appointment based on patient ID, date, and time
-        const query = 'SELECT * FROM Appointments WHERE patient_id = ? AND appointment_date = ? AND appointment_time = ?';
+        const appointmentQuery = 'SELECT * FROM Appointments WHERE patient_id = ? AND appointment_date = ? AND appointment_time = ?';
 
-        // Execute the query using the existing connection
-        connection.query(query, [patientId, appointmentDate, appointmentTime], (error, results) => {
+        // Execute the query to fetch the appointment details
+        connection.query(appointmentQuery, [patientId, appointmentDate, appointmentTime], (error, appointmentResults) => {
             if (error) {
                 console.error('Error fetching appointment details:', error);
-                res.status(500).send('Error fetching appointment details');
-            } else {
-                // Check if any rows were returned
-                if (results.length === 0) {
-                    res.status(404).send('Appointment not found');
-                } else {
-                    // Render the appointment details page and pass the fetched data
-                    res.render('diagnosis', { appointment: results[0], patientName });
-                }
+                return res.status(500).send('Error fetching appointment details');
             }
+
+            // Check if any rows were returned
+            if (appointmentResults.length === 0) {
+                return res.status(404).send('Appointment not found');
+            }
+
+            const appointment = appointmentResults[0];
+            const appointmentId = appointment.appointment_id; // Extract appointment_id
+
+            // Query to fetch all available medicines from the pharmacy table
+            const pharmacyQuery = 'SELECT * FROM Pharmacy';
+
+            // Execute the query to fetch all available medicines
+            connection.query(pharmacyQuery, (error, pharmacyResults) => {
+                if (error) {
+                    console.error('Error fetching medicines:', error);
+                    return res.status(500).send('Error fetching medicines');
+                }
+
+                // Render the diagnosis page and pass the fetched data including appointment_id
+                res.render('diagnosis', { appointmentId, appointment, patientName, medicines: pharmacyResults });
+            });
         });
     });
 };
