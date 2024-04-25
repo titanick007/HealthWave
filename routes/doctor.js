@@ -4,6 +4,7 @@ const viewAppointment = require('../controllers/viewDoctorAppointment');
 const fetchAppointment = require('../controllers/fetchAppointmentDetails');
 const diagnose = require('../controllers/prescribeMeds');
 const path = require('path');
+const viewHistory = require('../controllers/doctorViewHistory');
 const publicDirectoryPath = path.join(__dirname, '..', 'public');
 
 const router = express.Router();
@@ -29,6 +30,11 @@ router.post('/prescribe-medicine',diagnose.addPrescription);
 router.get('/prescribe-medicine-page',(req,res)=>{
     res.sendFile(publicDirectoryPath+'/select-appointment-diagnosis.html');
 })
+
+
+
+//view previous appointments medical history
+router.get('/view-medical-history',viewHistory.getDoctorAppointmentsWithDiagnosis);
 
 
 

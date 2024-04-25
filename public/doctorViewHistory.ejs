@@ -1,0 +1,64 @@
+<!-- doctorViewMedicalHistory.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Medical History</title>
+    <!-- Add any CSS styling or external CSS links here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .appointment {
+            margin: 20px 20px 0 20px; /* Added left margin */
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .appointment p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Doctor's Medical History</h1>
+    </div>
+
+    <% if (appointments.length === 0) { %>
+        <p>No previous appointments with diagnosis found.</p>
+    <% } else { %>
+        <% appointments.forEach(appointment => { %>
+            <div class="appointment">
+                <p><strong>Patient Name:</strong> <%= appointment.patient_name %></p>
+                <p><strong>Date:</strong> <%= appointment.appointment_date %></p>
+                <p><strong>Time:</strong> <%= appointment.appointment_time %></p>
+                <p><strong>Diagnosis:</strong> <%= appointment.diagnosis %></p>
+                <% if (appointment.medicine_names) { %>
+                    <p><strong>Prescribed Medicines:</strong> <%= appointment.medicine_names %></p>
+                <% } %>
+            </div>
+        <% }); %>
+    <% } %>
+
+    <!-- Add any additional HTML or EJS code as needed -->
+
+</body>
+</html>

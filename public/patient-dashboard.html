@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patient Dashboard</title>
+    <title>Doctor Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
-            background-image: url('image.png');
-            background-size: cover;
-            background-position: center;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
             height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
 
         .dashboard {
             margin-top: 100px;
             text-align: center;
-            background-color: rgba(173, 216, 230, 0.8); /* Light blue background color */
+            background-color: rgba(255, 255, 255, 0.5); /* Light blue background color */
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(10, 73, 100, 0.1);
@@ -52,7 +62,7 @@
 
         .card {
             display: inline-block;
-            background-color: #fff;
+            background-color: rgba(137, 224, 246, 0.8);
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(10, 73, 100, 0.1);
             padding: 20px;
@@ -87,29 +97,34 @@
     </style>
 </head>
 <body>
-<div class="dashboard">
-    <div class="logout">
-        Logout <i class="fas fa-sign-out-alt"></i>
+    <video autoplay muted loop>
+        <source src="https://media.istockphoto.com/id/1439753810/video/animated-visit-patient-illustration.mp4?s=mp4-640x640-is&k=20&c=rjoEmIrmQw4rlP9CZhvL0RUAIvT72fEp8uxjNdnz5Is=" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="dashboard">
+        <div class="logout">
+            Log Out <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <h1>Welcome Patient</h1>
+        <div class="card">
+            <i class="fas fa-calendar-alt"></i>
+            <h2>Appointments</h2>
+            <p>View and manage your appointments</p>
+            <a href="/patient/view-appointments" class="button">Go to Appointments</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-notes-medical"></i>
+            <h2>Medical History</h2>
+            <p>View medical history</p>
+            <a href="/patient/view-medical-history" class="button">View Medical History</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-plus"></i>
+            <h2>Schedule</h2>
+            <p>Consult our leading doctors</p>
+            <a href="/schedule-appointment" class="button">Schedule a new appointment</a>
+        </div>
     </div>
-    <h1>Welcome Patient</h1>
-    <div class="card">
-        <i class="fas fa-calendar-alt"></i>
-        <h2>Appointments</h2>
-        <p>View and manage your appointments</p>
-        <a href="/patient/view-appointments" class="button">Go to Appointments</a>
-    </div>
-    <div class="card">
-        <i class="fas fa-notes-medical"></i>
-        <h2>Medical History</h2>
-        <p>View your medical history</p>
-        <a href="/view-medical-history" class="button">View Medical History</a>
-    </div>
-    <div class="card">
-        <i class="fas fa-plus"></i>
-        <h2>Schedule</h2>
-        <p>Schedule a new appointment</p>
-        <a href="/schedule-appointment" class="button">Schedule Appointment</a>
-    </div>
-</div>
 </body>
 </html>

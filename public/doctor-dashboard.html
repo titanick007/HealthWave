@@ -1,92 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Doctor Dashboard</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        background-image: url('./image.png');
-        background-size: cover;
-        background-position: center;
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-        height: 100vh;
-      }
-      .dashboard {
-        margin-top: 100px;
-        text-align: center;
-      }
-      h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-        color: #007bff;
-      }
-      .button {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 10px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-      }
-      .button:hover {
-        background-color: #0056b3;
-      }
-      .icon {
-        font-size: 24px;
-        margin-right: 10px;
-        vertical-align: middle;
-      }
-      .logout {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
-        color: #007bff;
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-      .logout:hover {
-        color: #0056b3;
-      }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .dashboard {
+            margin-top: 100px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.265); /* Light blue background color */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(10, 73, 100, 0.1);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .card {
+            display: inline-block;
+            background-color: rgba(137, 224, 246, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(10, 73, 100, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: calc(33.33333% - 20px);
+        }
+
+        .card i {
+            font-size: 48px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: #000000; /* Black font color */
+            cursor: pointer;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+    <video autoplay muted loop>
+        <source src="https://media.istockphoto.com/id/1232672302/video/doctor-and-nurse-workers-with-earth-planet.mp4?s=mp4-640x640-is&k=20&c=3fOPLRkvTuVyJT_VXJSn4xTKs_APO0Ml4gOFDMbiDJU=" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="dashboard">
-      <h1>Welcome Doctor</h1>
-      <a href="/doctor/view-appointments" class="button">
-        <i class="ri-time-line icon"></i>View Appointments
-      </a>
-      <a href="/view-medical-history" class="button">
-        <i class="ri-file-history-line icon"></i>View Medical History
-      </a>
-      <a href="/doctor/prescribe-medicine-page" class="button">
-        <i class="ri-prescription-line icon"></i>Prescribe Medicine
-      </a>
-      <a href="/view-lab-results" class="button">
-        <i class="ri-test-tube-line icon"></i>View Lab Results
-      </a>
-      <a href="/doctor-portal" class="button secondary">
-        <i class="ri-dashboard-line icon"></i>Doctor Portal
-      </a>
-      <div class="logout">
-        <i class="ri-logout-box-line"></i>
-      </div>
+        <div class="logout">
+            Log Out <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <h1>Welcome Doctor</h1>
+        <div class="card">
+            <i class="fas fa-calendar-alt"></i>
+            <h2>Appointments</h2>
+            <p>View and manage your appointments</p>
+            <a href="/doctor/view-appointments" class="button">Go to Appointments</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-notes-medical"></i>
+            <h2>Medical History</h2>
+            <p>View patient's medical history</p>
+            <a href="/doctor/view-medical-history" class="button">View Medical History</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-capsules"></i>
+            <h2>Prescribe Medicine</h2>
+            <p>Prescribe Medicines to patients</p>
+            <a href="/doctor/prescribe-medicine-page" class="button">Prescribe Medicine</a>
+        </div>
     </div>
-  </body>
+</body>
 </html>

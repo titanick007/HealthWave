@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
             height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
         .dashboard {
             margin-top: 100px;
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.614); /* Light blue background color */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(10, 73, 100, 0.1);
         }
+
         h1 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: #333;
         }
-        .button-container {
-            margin-top: 20px;
-        }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -38,18 +55,75 @@
             margin: 10px;
             text-decoration: none;
         }
+
         .button:hover {
             background-color: #0056b3;
+        }
+
+        .card {
+            display: inline-block;
+            background-color: rgba(137, 224, 246, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(10, 73, 100, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: calc(33.33333% - 20px);
+        }
+
+        .card i {
+            font-size: 48px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: #000000; /* Black font color */
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <video autoplay muted loop>
+        <source src="https://media.istockphoto.com/id/1224290992/video/doctors-couple-professional-with-medical-icons.mp4?s=mp4-640x640-is&k=20&c=iiQ3-ll799sqZeUOYEwvK1CpGHUilQPowEHzq5y2-Ks=" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="dashboard">
-        <h1>Welcome Administrator</h1>
-        <div class="button-container">
-            <a href="/admin/manage-pharmacy" class="button">Manage Pharmacy</a>
-            <a href="/admin/generate-bill" class="button">Generate Bill</a>
+        <div class="logout">
+            Log Out <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <h1>Welcome Admin</h1>
+        <div class="card">
+            <i class="fas fa-capsules"></i>
+            <h2>Pharmacy</h2>
+            <p>Manage the Pharmacy</p>
+            <a href="/admin/manage-pharmacy" class="button">Go to Pharmacy</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-notes-medical"></i>
+            <h2>Medical History</h2>
+            <p>View patient's medical history</p>
             <a href="/admin/view-medical-history" class="button">View Medical History</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-plus"></i>
+            <h2>Bills</h2>
+            <p>Generate a new Bill</p>
+            <a href="/admin/generate-bill" class="button">Generate Bill</a>
         </div>
     </div>
 </body>
