@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Bills</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patient Bills</h1>
+    <% if (bills.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Billing Date</th>
+                    <th>Medicine Name</th>
+                    <th>Medicine Quantity</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% bills.forEach(bill => { %>
+                    <% bill.medicines.forEach(medicine => { %>
+                        <tr>
+                            <td><%= bill.appointmentId %></td>
+                            <td><%= bill.bill.billing_date %></td>
+                            <td><%= medicine.medicine_name %></td>
+                            <td><%= medicine.quantity %></td>
+                            <td><%= bill.bill.total_amount %></td>
+                        </tr>
+                    <% }); %>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+     <p>No bills available.</p>
+    <% } %>
+
+</body>
+</html>
