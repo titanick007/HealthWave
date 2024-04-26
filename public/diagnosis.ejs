@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,18 +80,18 @@
                 <p><span>Date:</span> <%= appointment.appointment_date %></p>
                 <p><span>Time:</span> <%= appointment.appointment_time %></p>
                 <p><span>Symptoms:</span> <%= appointment.symptoms %></p>
-                <!-- Add more details if needed -->
+                Add more details if needed 
             </div>
         </div>
         <div class="content">
-            <!-- Add main content here -->
+           
         </div>
         <div class="sidebar">
             <form action="/doctor/prescribe-medicine" method="POST">
                 <input type="hidden" name="appointmentId" value="<%= appointment.appointment_id %>">
                 <h2>Prescribe Medicine</h2>
                 <% for (let i = 1; i <= 3; i++) { %>
-                    <!-- Medicine <%= i %> -->
+                    
                     <label for="med<%= i %>">Medicine <%= i %>:</label>
                     <select id="med<%= i %>" name="med<%= i %>" onchange="updateQuantityRequired(i)">
                         <option value="" selected disabled>Select Medicine</option>
@@ -101,7 +101,187 @@
                     </select>
                     <input type="number" id="med<%= i %>Quantity" name="med<%= i %>Quantity" min="0">
                 <% } %>
-                <!-- Diagnosis -->
+                
+                <label for="diagnosis">Diagnosis and Instructions:</label>
+                <textarea id="diagnosis" name="diagnosis" required></textarea>
+                <button type="submit">Prescribe Medicine</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function updateQuantityRequired(index) {
+            const medicineSelect = document.getElementById(`med${index}`);
+            const quantityInput = document.getElementById(`med${index}Quantity`);
+
+            if (medicineSelect.value !== '') {
+                quantityInput.setAttribute('required', 'required');
+            } else {
+                quantityInput.removeAttribute('required');
+            }
+        }
+    </script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+        .box {
+            width: 33.3%;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .box h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .box p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .box form {
+            margin-top: 20px;
+        }
+        .box label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+            text-align: right;
+            margin-right: 20px;
+        }
+        .box select,
+        .box input[type="number"],
+        .box textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .box textarea {
+            height: 100px;
+        }
+        .box button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .box button:hover {
+            background-color: #0056b3;
+        }
+        .box img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .box form label:first-child {
+            margin-top: 0;
+        }
+        .left-box {
+            order: 1;
+        }
+        .middle-box {
+            order: 2;
+        }
+        .right-box {
+            order: 3;
+        }
+        .left-box,
+        .middle-box,
+        .right-box {
+            flex: 1;
+        }
+        .left-box img {
+            width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .middle-box h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .middle-box p {
+            margin-bottom: 20px;
+        }
+        .right-box h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .right-box label {
+            text-align: left;
+            margin-right: 0;
+            margin-bottom: 5px;
+        }
+        .right-box input[type="date"],
+        .right-box input[type="time"],
+        .right-box select,
+        .right-box textarea {
+            width: 100%;
+            margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box left-box">
+            <img src="https://static.vecteezy.com/system/resources/previews/006/955/817/original/patient-visit-doctor-for-medical-health-consultation-flat-illustration-vector.jpg" alt="Appointment">
+        </div>
+        <div class="box middle-box">
+            <p><span>Patient Name:</span> <%= patientName %></p>
+            <p><span>Date:</span> <%= appointment.appointment_date %></p>
+            <p><span>Time:</span> <%= appointment.appointment_time %></p>
+            <p><span>Symptoms:</span> <%= appointment.symptoms %></p>
+            <br>
+            
+            <!-- Add more details if needed -->
+        </div>
+        <div class="box right-box">
+            <form action="/doctor/prescribe-medicine" method="POST">
+                <input type="hidden" name="appointmentId" value="<%= appointment.appointment_id %>">
+                <h2>Prescribe Medicine</h2>
+                <% for (let i = 1; i <= 3; i++) { %>
+                    
+                    <label for="med<%= i %>">Medicine <%= i %>:</label>
+                    <select id="med<%= i %>" name="med<%= i %>" onchange="updateQuantityRequired(i)">
+                        <option value="" selected disabled>Select Medicine</option>
+                        <% medicines.forEach(medicine => { %>
+                            <option value="<%= medicine.medicine_id %>"><%= medicine.name %></option>
+                        <% }) %>
+                    </select>
+                    <input type="number" id="med<%= i %>Quantity" name="med<%= i %>Quantity" min="0">
+                <% } %>
+                
                 <label for="diagnosis">Diagnosis and Instructions:</label>
                 <textarea id="diagnosis" name="diagnosis" required></textarea>
                 <button type="submit">Prescribe Medicine</button>

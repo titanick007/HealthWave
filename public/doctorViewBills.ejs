@@ -1,0 +1,83 @@
+<!-- doctorViewBills.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's View Bills</title>
+    <!-- Add your CSS styles here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Doctor's View Bills</h1>
+    <% if (bills.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Patient Name</th>
+                    <th>Billing Date</th>
+                    <th>Medicine Name</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% bills.forEach(bill => { %>
+                    <tr>
+                        <td><%= bill.appointmentId %></td>
+                        <td><%= bill.patientName %></td>
+                        <td><%= bill.billing_date %></td>
+                        <td>
+                            <% bill.medicines.forEach(medicine => { %>
+                                <p><%= medicine.medicine_name %></p>
+                            <% }); %>
+                        </td>
+                        <td>
+                            <% bill.medicines.forEach(medicine => { %>
+                                <p><%= medicine.unit_price %></p>
+                            <% }); %>
+                        </td>
+                        <td>
+                            <% bill.medicines.forEach(medicine => { %>
+                                <p><%= medicine.quantity %></p>
+                            <% }); %>
+                        </td>
+                        <td><%= bill.total_amount %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No bills available.</p>
+    <% } %>
+</body>
+</html>

@@ -3,70 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oasis Health Care</title>
+    <title>Hospital Management System</title>
     <style>
         body {
             font-family: 'Playfair Display', serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('https://img.freepik.com/premium-vector/people-wait-hospital-hall-interior-illustration-cartoon-patient-woman-man-characters-masks-sitting-doctor-reception-room-waiting-doctoral-exam-medical-healthcare-background_213110-414.jpg?w=1060');
+            background-image: url('https://i.pinimg.com/736x/b7/20/7a/b7207af2e6078e81ce7ab484db59b0cf.jpg');
             background-size: cover;
             background-position: center;
         }
-        .title {
-            justify-content: center;
+
+        .login-container-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            position: relative;
-            top: -50px;
-            color: #0056b3;
-            padding: 10px;
-           
+            flex-direction: column;
         }
-        .login-container-container{
-            display: flex;
-            justify-content: center;
-        }
+
         .login-container {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(201, 231, 239, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             width: 300px;
-            animation: slideInFromLeft 1s ease-in-out;
         }
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-        .new-user{
-            display:flex;
-            justify-content: center;
-        }
+
         .login-container h2 {
             margin-bottom: 20px;
             text-align: center;
             color: #333;
         }
+
         .login-container form {
             display: flex;
             flex-direction: column;
         }
+
         .login-container form label {
             font-weight: bold;
             margin-bottom: 5px;
             color: #333;
         }
+
         .login-container form input[type="text"],
         .login-container form input[type="password"] {
             padding: 10px;
@@ -75,31 +58,53 @@
             border-radius: 5px;
             font-size: 16px;
         }
+
         .login-container form input[type="submit"] {
             padding: 10px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             background-color: #007bff;
-            color: #fff;
+            color: #9dc7cd;
             cursor: pointer;
         }
+
         .login-container form input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        .new-user {
+            display: flex;
+            justify-content: center;
+        }
+
+        .new-user a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .new-user a:hover {
+            text-decoration: underline;
+        }
+
+        .title {
+            color: black; /* Black color */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         h1 {
             font-size: 3rem;
-            color: rgb(34, 11, 237);
+            color: rgb(5, 5, 5);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            
         }
-        
     </style>
 </head>
 <body>
     <div class="login-wrapper">
         <div class="title">
             <h1>ABC Health Care</h1>
-            
         </div>
         <div class="login-container-container">
             <div class="login-container">
@@ -115,10 +120,7 @@
                     <a href="/go_to_register">New user?</a>
                 </div>
             </div>
-            
         </div>
     </div>
-
-    
 </body>
 </html>

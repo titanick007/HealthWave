@@ -1,12 +1,9 @@
-<!-- upcoming-appointments.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upcoming Appointments</title>
-    <!-- Add any CSS styling or external CSS links here -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,8 +13,6 @@
         }
 
         .header {
-            background-color: #007bff;
-            color: #fff;
             padding: 20px;
             text-align: center;
         }
@@ -26,14 +21,45 @@
             margin: 0;
         }
 
-        .appointment {
-            margin: 20px 20px 0 20px; /* Added left margin */
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
+        .appointment-box {
+            width: 70%;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: space-between; 
+            min-height: 70vh; 
         }
 
-        .appointment p {
-            margin: 5px 0;
+        .patient-image {
+            width: 30%; 
+            margin: 20px;
+        }
+
+        .patient-image img {
+            width: 100%;
+            height: auto;
+            max-height: 350px; 
+        }
+
+        .appointment-table {
+            width: 60%; 
+            border-collapse: collapse;
+        }
+
+        .appointment-table th,
+        .appointment-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .appointment-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -42,19 +68,37 @@
         <h1>Upcoming Appointments</h1>
     </div>
 
-    <% if (appointments.length === 0) { %>
-        <p>No upcoming appointments.</p>
-    <% } else { %>
+    <div class="appointment-box">
+        <div class="patient-image">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/012/852/501/small_2x/schedule-doctor-appointment-2d-isolated-illustration-healthcare-service-flat-characters-on-cartoon-background-planning-colourful-editable-scene-for-mobile-website-presentation-vector.jpg" alt="Patient Image">
+        </div>
+        <% if (appointments.length === 0) { %>
+            <p>No upcoming appointments.</p>
+        <% } else { %>
         <% appointments.forEach(appointment => { %>
-            <div class="appointment">
-                <p><strong>Date: </strong><%= appointment.appointment_date %></p>
-                <p><strong>Time: </strong><%= appointment.appointment_time %></p>
-                <p><strong>Doctor: </strong><%= appointment.doctor_name %></p>
-            </div>
-        <% }); %>
-    <% } %>
 
-    <!-- Add any additional HTML or EJS code as needed -->
+        <table class="appointment-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Doctor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= appointment.appointment_date %></td>
+                    <td><%= appointment.appointment_time %></td>
+                    <td><%=appointment.doctor_name %></td>
+                    <td><%=appointment.symptoms%></td>
+                </tr>
+            </tbody>
+        </table>
+        <% }); %>
+        <% } %>
+        
+        
+    </div>
 
 </body>
 </html>

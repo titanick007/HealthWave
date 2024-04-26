@@ -1,83 +1,92 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restock Medicines</title>
+    <title>Place Order</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
+        h2 {
             text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        form {
+            width: 30%;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         label {
             display: block;
-            font-weight: bold;
             margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
         }
-        select, input[type="number"] {
+        input[type="number"],
+        select,
+        textarea {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
+            box-sizing: border-box;
         }
-        button {
-            width: 100%;
-            padding: 10px 20px;
+        input[type="submit"] {
             background-color: #007bff;
             color: #fff;
             border: none;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
         }
-        button:hover {
-            background-color: #0056b3;
+        input[type="submit"]:hover {
+            background-color: #27292c;
         }
-        p {
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
+        .image-container {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            width: 80%;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Restock Medicines</h1>
-        <% if (outOfStockMeds.length > 0) { %>
-            <form action="/admin/restock" method="POST">
-                <label for="medicine">Select Medicine:</label>
-                <select id="medicine" name="medicine">
-                    <% outOfStockMeds.forEach(med => { %>
-                        <option value="<%= med.name %>"><%= med.name %></option>
-                    <% }); %>
-                </select>
-                <label for="quantity">Enter Quantity to Order:</label>
-                <input type="number" id="quantity" name="quantity" min="1" max="300">
-                <button type="submit">Restock</button>
-            </form>
-        <% } else { %>
-            <p>No medicines are currently out of stock.</p>
-        <% } %>
+    <div class="image-container">
+        <img src="https://thumbs.dreamstime.com/b/pharmacy-business-medicine-drug-store-pill-bottle-online-drugstore-infographic-background-flat-cartoon-vector-illustration-156649250.jpg" alt="Doctor">
     </div>
+    <% if (outOfStockMeds.length > 0) { %>
+        <form action="/admin/restock" method="POST">
+            <label for="medicine">Select Medicine:</label>
+            <select id="medicine" name="medicine">
+                <% outOfStockMeds.forEach(med => { %>
+                    <option value="<%= med.name %>"><%= med.name %></option>
+                <% }); %>
+            </select>
+            <label for="quantity">Enter Quantity to Order:</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="300">
+            <button type="submit">Restock</button>
+        </form>
+    <% } else { %>
+        <p>No medicines are currently out of stock.</p>
+    <% } %>
 </body>
 </html>

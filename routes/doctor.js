@@ -5,6 +5,7 @@ const fetchAppointment = require('../controllers/fetchAppointmentDetails');
 const diagnose = require('../controllers/prescribeMeds');
 const path = require('path');
 const viewHistory = require('../controllers/doctorViewHistory');
+const viewBills = require('../controllers/doctorViewBills');
 const publicDirectoryPath = path.join(__dirname, '..', 'public');
 
 const router = express.Router();
@@ -35,6 +36,21 @@ router.get('/prescribe-medicine-page',(req,res)=>{
 
 //view previous appointments medical history
 router.get('/view-medical-history',viewHistory.getDoctorAppointmentsWithDiagnosis);
+
+
+//view bills
+router.get('/view-bills', (req, res) => {
+    viewBills.doctorViewBills(req, res, (error, bills) => {
+        if (error) {
+            // Handle error
+            console.error('Error:', error);
+            res.status(500).send('An error occurred');
+        } else {
+            // Render bills
+            res.render('doctorViewBills', { bills });
+        }
+    });
+});
 
 
 
