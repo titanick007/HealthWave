@@ -1,70 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Registration</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Registration</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input[type="text"],
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            width: 100%;
-            background-color: #0056b3;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #366597;
-        }
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .dashboard {
+        max-width: 960px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: table;
+        width: 100%;
+      }
+      .welcome {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 20px;
+        background-image: url('https://c8.alamy.com/comp/2C04T24/online-doctor-appointment-female-doctor-on-the-smartphone-screen-vector-illustration-in-flat-style-2C04T24.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      .welcome h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #060808;
+        margin-bottom: 10px;
+      }
+      .welcome p {
+        font-size: 18px;
+        color: #060808;
+        margin-bottom: 30px;
+      }
+      form {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        width: 100%;
+        background-color: #0056b3;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      input[type="submit"]:hover {
+        background-color: #366597;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Doctor Registration</h1>
-    <form action="/doctor/register" method="POST">
+    <div class="dashboard">
+      <div class="welcome">
+        <h2>Welcome, another warrior!</h2>
+        <p>
+          We're so happy that you're working with us to help other people live.
+        </p>
+      </div>
+      <form action="/doctor/register" method="POST">
         <label for="email-id">Username/Email-id</label>
-        <input type="text" id="email-id" name="emailId"><br>
-        <label for="password">Password</label>
-        <input type="text" id="password" name="password"><br>
+        <input type="text" id="email-id" name="emailId" required />
+        <br />
+        <labelfor="password">Password</label>
+        <input type="text" id="password" name="password" required />
+        <br />
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="specialization">Address:</label>
-        <input type="text" id="department" name="department" required><br>
+        <input type="text" id="name" name="name" required />
+        <br />
+        <label for="specialization">Specialization:</label>
+        <input
+          type="text"
+          id="department"
+          name="department"
+          placeholder="e.g. Cardiology, Neurology, etc."
+          required
+        />
+        <br />
         <label for="contact_number">Contact Number:</label>
-        <input type="text" id="contact_number" name="contact_number" required><br>
-        <input type="submit" value="Register">
-    </form>
-</body>
+        <input
+          type="text"
+          id="contact_number"
+          name="contact_number"
+          placeholder="e.g. +1 123 456 7890"
+          required
+        />
+        <br />
+        <input type="submit" value="Register" />
+      </form>
+    </div>
+  </body>
 </html>

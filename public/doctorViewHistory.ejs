@@ -1,12 +1,9 @@
-<!-- doctorViewMedicalHistory.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor's Medical History</title>
-    <!-- Add any CSS styling or external CSS links here -->
+    <title>Medical History</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,8 +13,6 @@
         }
 
         .header {
-            background-color: #007bff;
-            color: #fff;
             padding: 20px;
             text-align: center;
         }
@@ -26,39 +21,87 @@
             margin: 0;
         }
 
-        .appointment {
-            margin: 20px 20px 0 20px; /* Added left margin */
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
+        .appointment-box {
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: row; /* Change to row */
+            align-items: center;
+            justify-content: space-between; /* Add this */
+            min-height: 70vh; /* Adjust the minimum height */
         }
 
-        .appointment p {
-            margin: 5px 0;
+        .patient-image {
+            width: 45%; /* Adjust width */
+            margin: 20px;
+        }
+
+        .patient-image img {
+            width: 80%;
+            height: auto;
+            max-height: 250px; /* Adjust the max-height as needed */
+        }
+
+        .appointment-table {
+            width: 60%; /* Adjust width */
+            border-collapse: collapse;
+        }
+
+        .appointment-table th,
+        .appointment-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .appointment-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Doctor's Medical History</h1>
+        <h1>Medical History</h1>
     </div>
 
-    <% if (appointments.length === 0) { %>
-        <p>No previous appointments with diagnosis found.</p>
-    <% } else { %>
-        <% appointments.forEach(appointment => { %>
-            <div class="appointment">
-                <p><strong>Patient Name:</strong> <%= appointment.patient_name %></p>
-                <p><strong>Date:</strong> <%= appointment.appointment_date %></p>
-                <p><strong>Time:</strong> <%= appointment.appointment_time %></p>
-                <p><strong>Diagnosis:</strong> <%= appointment.diagnosis %></p>
-                <% if (appointment.medicine_names) { %>
-                    <p><strong>Prescribed Medicines:</strong> <%= appointment.medicine_names %></p>
-                <% } %>
-            </div>
-        <% }); %>
+    <div class="appointment-box">
+        <div class="patient-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfjQReSnR0eDySK1-rKuY4OcUZQmWzj1XcNd5dB146nA&s" alt="Patient Image">
+        </div>
+        <% if (appointments.length === 0) { %>
+            <p>No previous appointments with diagnosis found.</p>
+        <% } else { %>
+            <% appointments.forEach(appointment => { %>
+        <table class="appointment-table">
+            <thead>
+                <tr>
+                    <th>Patient's name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Diagnosis</th>
+                    <th>Prescribed Medicines</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= appointment.patient_name %></td>
+                    <td><%= appointment.appointment_date %></td>
+                    <td><%= appointment.appointment_time %></td>
+                    <td><%= appointment.diagnosis %></td>
+                    <% if (appointment.medicine_names) { %>
+                    <td><%= appointment.medicine_names %></td>
+                    <% } %>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <% }); %>
     <% } %>
 
-    <!-- Add any additional HTML or EJS code as needed -->
 
 </body>
 </html>
