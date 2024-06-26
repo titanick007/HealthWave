@@ -1,1 +1,1 @@
-HealthWave - An advanced hospital management system
+HealthWave - A comprehensive Hospital Management System to streamline administrative tasks, enhance patient care, and optimize resource management within healthcare facilities. Includes an AI assistant to help patients understand their medical condition. 
